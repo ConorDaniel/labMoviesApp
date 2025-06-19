@@ -8,7 +8,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { MovieDetailsProps } from "../../types/interfaces"; 
 import Avatar from "@mui/material/Avatar";
-
+import CardHeader from "@mui/material/CardHeader";  // ✅ add this import
 
 const styles = {
   root: {  
@@ -17,6 +17,9 @@ const styles = {
     alignItems: "center",
     flexWrap: "wrap",
     padding: 1.5,
+  },
+  avatar: {
+    backgroundColor: "rgb(255, 0, 0)",
   },
 };
 
@@ -30,19 +33,28 @@ const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
 
-      <Typography variant="h4" component="h3">
-      {isFavourite && (
-      <Avatar sx={{ backgroundColor: "rgb(255, 0, 0)", width: 32, height: 32 }}>
-      <FavoriteIcon sx={{ fontSize: 20 }} />
-      </Avatar>
-      )}{" "}
-        {movie.title}{" "}
-        <a href={movie.homepage}>
-          <HomeIcon color="primary" fontSize="large" />
-        </a>
-        <br />
-        <span>{movie.tagline}</span>
-      </Typography>
+      <CardHeader
+        avatar={
+          isFavourite ? (
+            <Avatar sx={styles.avatar}>
+              <FavoriteIcon />
+            </Avatar>
+          ) : null
+        }
+        title={
+          <Typography variant="h4" component="h3">
+            {movie.title}{" "}
+            <a href={movie.homepage}>
+              <HomeIcon color="primary" fontSize="large" />
+            </a>
+          </Typography>
+        }
+        subheader={
+          <Typography variant="subtitle1" component="p">
+            {movie.tagline}
+          </Typography>
+        }
+      />
 
       <IconButton aria-label="go forward">
         <ArrowForwardIcon color="primary" fontSize="large" />
