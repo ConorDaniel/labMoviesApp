@@ -42,6 +42,11 @@ export interface BaseMovieProps {
     vote_count?: number;
     width?: number;
   }
+
+  export interface BaseMovieListProps {
+    movies: BaseMovieProps[];
+    selectFavourite: (movieId: number) => void;
+  }
   
   export interface MoviePageProps {
     movie: MovieDetailsProps;
