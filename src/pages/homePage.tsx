@@ -22,7 +22,6 @@ const HomePage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   return (
     <PageTemplate
       title='Discover Movies'

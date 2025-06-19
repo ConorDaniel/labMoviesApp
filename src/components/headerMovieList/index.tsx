@@ -4,42 +4,45 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import HomeIcon from "@mui/icons-material/Home";
+import FavoriteIcon from "@mui/icons-material/Favorite"; // Already allowed
+import { MovieDetailsProps } from "../../types/interfaces"; 
 
 const styles = {
-    root: {
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-        flexWrap: "wrap",
-        marginBottom: 1.5,
-    },
+  root: {  
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexWrap: "wrap",
+    padding: 1.5,
+  },
 };
 
-interface HeaderProps {
-    title: string;
-}
+const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
+  const favourites = JSON.parse(localStorage.getItem("favourites") || "[]");
+  const isFavourite = favourites.some((fav: { id: number }) => fav.id === movie.id);
 
-const Header: React.FC<HeaderProps> = (headerProps) => {
-    const title = headerProps.title
+  return (
+    <Paper component="div" sx={styles.root}>
+      <IconButton aria-label="go back">
+        <ArrowBackIcon color="primary" fontSize="large" />
+      </IconButton>
 
-    return (
-        <Paper component="div" sx={styles.root}>
-            <IconButton
-                aria-label="go back"
-            >
-                <ArrowBackIcon color="primary" fontSize="large" />
-            </IconButton>
+      <Typography variant="h4" component="h3">
+        {isFavourite && <FavoriteIcon color="error" fontSize="large" />}{" "}
+        {movie.title}{" "}
+        <a href={movie.homepage}>
+          <HomeIcon color="primary" fontSize="large" />
+        </a>
+        <br />
+        <span>{movie.tagline}</span>
+      </Typography>
 
-            <Typography variant="h4" component="h3">
-                {title}
-            </Typography>
-            <IconButton
-                aria-label="go forward"
-            >
-                <ArrowForwardIcon color="primary" fontSize="large" />
-            </IconButton>
-        </Paper>
-    );
+      <IconButton aria-label="go forward">
+        <ArrowForwardIcon color="primary" fontSize="large" />
+      </IconButton>
+    </Paper>
+  );
 };
 
-export default Header;
+export default MovieHeader;

@@ -44,7 +44,6 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-
   const handleChange = (e: SelectChangeEvent, type: FilterOption, value: string) => {
     e.preventDefault()
     onUserInput(type, value)

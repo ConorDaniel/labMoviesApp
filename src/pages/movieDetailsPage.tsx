@@ -41,7 +41,6 @@ const MoviePage: React.FC= () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   return (
     <>
       {movie ? (
