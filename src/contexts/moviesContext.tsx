@@ -24,6 +24,11 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
   const [myReviews, setMyReviews] = useState<Record<number, Review>>({}); // NEW
 
   const addToFavourites = useCallback((movie: BaseMovieProps) => {
+    if (!movie || typeof movie.id !== 'number') {
+      console.warn("Invalid movie passed to addToFavourites:", movie);
+      return;
+    }
+  
     setFavourites((prevFavourites) => {
       if (!prevFavourites.includes(movie.id)) {
         return [...prevFavourites, movie.id];

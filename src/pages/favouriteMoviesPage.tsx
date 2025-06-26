@@ -5,6 +5,7 @@ import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
+import { BaseMovieProps } from "../types/interfaces";
 import MovieFilterUI, {
   titleFilter,
   genreFilter,
@@ -47,7 +48,10 @@ const FavouriteMoviesPage: React.FC = () => {
     return <Spinner />;
   }
 
-  const allFavourites = favouriteMovieQueries.map((q) => q.data);
+  const allFavourites = favouriteMovieQueries
+  .filter((q) => q.data !== undefined)
+  .map((q) => q.data as BaseMovieProps);
+
   const displayedMovies = allFavourites
     ? filterFunction(allFavourites)
     : [];

@@ -42,11 +42,6 @@ export interface BaseMovieProps {
     vote_count?: number;
     width?: number;
   }
-
-  export interface BaseMovieListProps {
-    movies: BaseMovieProps[];
-    selectFavourite: (movieId: number) => void;
-  }
   
   export interface BaseMovieListProps {
     movies: BaseMovieProps[];
@@ -55,12 +50,7 @@ export interface BaseMovieProps {
   
   export interface MovieListPageTemplateProps extends BaseMovieListProps {
     title: string;
-  }
-  
-  export interface Review{
-    id: string;
-    content: string
-    author: string
+    scrollable?: boolean;
   }
 
   export interface GenreData {
@@ -76,3 +66,12 @@ export interface BaseMovieProps {
     total_results: number;
     results: BaseMovieProps[];
   }
+  
+  export interface Review {
+    author: string,
+    content: string,
+    agree: boolean,
+    rating: number,
+    movieId: number,
+  }
+
