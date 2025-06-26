@@ -15,23 +15,22 @@ import Alert from "@mui/material/Alert";
 
 
 
-const ReviewForm: React.FC<BaseMovieProps> = (movie) => {
-    const defaultValues = {
-        defaultValues: {
-          author: "",
-          review: "",
-          agree: false,
-          rating: 3,
-          movieId: 0,
-        }
-      };
+const ReviewForm: React.FC<BaseMovieProps> = ({ id, ...rest }) => {
+  const defaultValues = {
+    author: "",
+    content: "",
+    agree: false,
+    rating: 3,
+    movieId: 0,
+  };
+  
     
       const {
         control,
         formState: { errors },
         handleSubmit,
         reset,
-      } = useForm<Review>(defaultValues);
+      } = useForm<Review>({defaultValues });
     
       const navigate = useNavigate();
       const context = useContext(MoviesContext);
@@ -53,9 +52,9 @@ const ReviewForm: React.FC<BaseMovieProps> = (movie) => {
 
     
       const onSubmit: SubmitHandler<Review> = (review) => {
-        review.movieId = movie.id;
+        review.movieId = id;
         review.rating = rating;
-        context.addReview(movie, review);
+        context.addReview({ id, ...rest }, review);
         setOpen(true); // NEW
         // console.log(review);
       };
