@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { getUpComingMovies } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import AddToPlaylistIcon from "../components/cardIcons/addToPlaylist";
+import RemoveFromMustWatchIcon from "../components/cardIcons/removeFromMustWatch";  // ✅ import it!
 import { MoviesContext } from "../contexts/moviesContext";
 
 const UpcomingMoviesPage: React.FC = () => {
@@ -26,7 +27,12 @@ const UpcomingMoviesPage: React.FC = () => {
     <PageTemplate
       title="Upcoming Movies"
       movies={movies || []}
-      action={(movie) => <AddToPlaylistIcon />}
+      action={(movie) => (
+        <>
+          <AddToPlaylistIcon movie={movie} />
+          <RemoveFromMustWatchIcon movie={movie} />   {/* ✅ usage */}
+        </>
+      )}
     />
   );
 };
