@@ -3,7 +3,7 @@ import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "react-query";
 import { getUpComingMovies } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
-import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
+import AddToPlaylistIcon from "../components/cardIcons/addToPlaylist";
 import { MoviesContext } from "../contexts/moviesContext";
 
 const UpcomingMoviesPage: React.FC = () => {
@@ -26,7 +26,7 @@ const UpcomingMoviesPage: React.FC = () => {
     <PageTemplate
       title="Upcoming Movies"
       movies={movies || []}
-      action={(movie) => <AddToFavouritesIcon {...movie} />}
+      action={(movie) => <AddToPlaylistIcon />}
     />
   );
 };
